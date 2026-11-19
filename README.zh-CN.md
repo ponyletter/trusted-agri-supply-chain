@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-本仓库用于跟踪《安徽农学通报》投稿论文《可信农产品供应链的区块链构建路径研究》的修订。后续通过 GitHub Issues 拆分任务，目前待启动正文修改。
+本仓库用于跟踪《安徽农学通报》投稿论文《可信农产品供应链的区块链构建路径研究》的修订。通过 GitHub Issues 拆分任务，第1轮修改稿见 [`journal-submission/revision-1/`](journal-submission/revision-1/)（对应 Issue #3）。
 
 ## 编辑要求
 
@@ -32,4 +32,5 @@ Issue 标题以英文为主，可附中文原文方便定位。每条 Issue 写�
 - [《安徽农学通报》投稿须知](journal-submission/formatting/submission-guidelines.docx)用于核对投稿流程、稿件必备内容以及图表、单位和参考文献的规范。
 - [论文模板与格式核对清单](journal-submission/formatting/manuscript-template-and-formatting-checklist.doc)提供 Word 排版样式及常见问题说明，可用于核对标题层级、摘要、单位、三线表和参考文献。
 - [硕士论文资料](thesis-materials/)包含硕士论文 Word 和配图，[replacement-figures](thesis-materials/replacement-figures/) 中存放两张拟替换的最新版图片。
+- [第1轮修改稿](journal-submission/revision-1/)包含修改稿 Word（`revised-manuscript.docx` 与 `.doc`）、修改说明、处理后的图片，以及由 `build/content.js` 生成 Word 的脚本；另有[修改稿 Markdown 阅读副本](markdown/revised-manuscript.md)。
 - [原投稿稿 Markdown](markdown/submitted-manuscript.md)和[期刊校样 Markdown](markdown/journal-proof.md)供查阅和复制，分页与排版以原文件为准。
