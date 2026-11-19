@@ -4,7 +4,7 @@
 
 柏小康（塔里木大学信息工程学院，新疆阿拉尔 843300）
 
-**摘  要** 构建安全、透明、高效的农产品供应链是推进农业高质量发展的重要内容。针对常规农产品溯源系统存在的源头记录可靠性不足、跨主体信息孤岛与核验口径不一致、图片和视频等证据文件存储压力大等问题，梳理了区块链、物联网和分布式存储等相关技术，分析了区块链在农产品供应链中的应用优势及仍需解决的问题，并据此提出可信供应链的构建路径。分布式账本支撑跨主体数据共享，共识机制保障已提交记录的完整性，智能合约驱动业务规则自动执行；但区块链本身无法核验上链前数据的真实性，账本共享需要明确成员准入与权限边界，大文件直接上链会造成账本膨胀。针对上述问题，从3个方面提出构建路径：一是利用物联网设备身份、批次绑定和上链前校验提升源头数据的可信度；二是采用Hyperledger Fabric联盟链，通过许可准入、背书策略和通道隔离实现多主体协同与权限管理；三是采用“链上关键信息+链下IPFS存储”的融合存储方式，并集成国密算法满足安全合规要求。研究可为农产品质量安全追溯体系建设提供参考。
+**摘  要** 针对农产品溯源中源头记录不可靠、跨主体信息难以共享核验、证据文件存储负担重等问题，梳理区块链、物联网和分布式存储技术，分析区块链在农产品供应链中的作用与局限，并提出相应的构建路径。分布式账本支持授权主体共享记录，交易验证与哈希关联有助于维护已提交记录的完整性，智能合约可执行各方约定的校验规则。实际应用仍需核验上链前的数据、界定跨主体访问权限，并妥善保存图片和视频等原始证据。首先，对物联网设备登记身份，将记录与农产品批次关联，在提交前开展校验和异常复核。其次，采用Hyperledger Fabric联盟链，通过许可准入、背书策略和通道管理明确各主体的提交、核验和查询权限。最后，链上登记关键业务信息及证据索引，原始文件通过星际文件系统（IPFS）在链下存储，配合完整性核验、备份和定期可用性检查。该框架可为农产品质量安全追溯体系建设提供参考。
 
 **关键词** 区块链；农产品供应链；农产品溯源；物联网；联盟链；数据安全
 
@@ -14,7 +14,7 @@
 
 BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, China)
 
-**Abstract** Building a secure, transparent, and efficient agricultural product supply chain is an important part of promoting high-quality agricultural development. Conventional traceability systems suffer from unreliable source records, information silos and inconsistent verification across organizations, and heavy storage pressure from evidence files such as images and videos. To address these problems, this study reviewed blockchain, the Internet of Things (IoT), and distributed storage technologies, analyzed the advantages of blockchain in agricultural supply chains together with the problems that remain unsolved, and proposed construction pathways for a trusted supply chain accordingly. Distributed ledgers support data sharing across organizations, consensus mechanisms protect the integrity of submitted records, and smart contracts execute business rules automatically. However, blockchain alone cannot verify whether data are authentic before they are written to the ledger, ledger sharing requires clear membership and access boundaries, and writing large files directly on-chain causes ledger bloat. In response, three pathways were proposed: (1) improving the credibility of source data through IoT device identity, batch binding, and pre-submission validation; (2) adopting a Hyperledger Fabric consortium blockchain to achieve multi-party collaboration and permission management through permissioned membership, endorsement policies, and channel isolation; and (3) adopting an integrated storage approach of key information on-chain and files in off-chain IPFS, with Chinese national cryptographic algorithms integrated to meet security and compliance requirements. This study provides a reference for building quality and safety traceability systems for agricultural products.
+**Abstract** This study reviews blockchain, the Internet of Things (IoT), and distributed storage in response to unreliable source records, difficulty sharing and verifying records across organizations, and the burden of storing evidence files in agricultural product traceability. Distributed ledgers let authorized parties share records. Transaction validation and hash links help preserve the integrity of committed records, and smart contracts apply agreed validation rules. Practical deployment still requires verifying data before submission, defining access rights across organizations, and retaining original evidence such as images and videos. The proposed framework registers IoT device identities, links records to product batches, and validates records and reviews exceptions before submission. It uses a Hyperledger Fabric consortium blockchain with permissioned membership, endorsement policies, and channel management to define who can submit, verify, and query records. Key business information and evidence references are recorded on-chain, while original files are stored off-chain in the InterPlanetary File System (IPFS), with integrity checks, backups, and periodic availability checks. The framework provides a reference for building quality and safety traceability systems for agricultural products.
 
 **Keywords** blockchain; agricultural product supply chain; agricultural product traceability; Internet of Things; consortium blockchain; data security
 
@@ -30,13 +30,13 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 区块链技术结合了公钥密码学、点对点（Peer-to-peer，P2P）网络、分布式账本、共识算法和智能合约等技术，为多方之间的数据共享提供了技术信任基础。其体系结构通常分为数据层、网络层、共识层、激励层、合约层和应用层6个层次，各层分别承担数据组织、节点通信、一致性达成、参与激励、规则执行和业务服务等功能。在核心组件中，哈希函数和链式结构用于保障数据完整性，使历史记录的改动能够被发现；工作量证明（Proof of work，PoW）等共识算法使互不信任的节点就账本状态达成一致；未花费交易输出（Unspent transaction output，UTXO）模型通过记录交易的输入与输出，便于验证资产来源并防止双重支付。作为典型的分布式系统，区块链的性能和安全性高度依赖P2P网络。P2P网络允许节点之间直接通信而无需中心化管理，其安全模型、拓扑结构和传输协议直接影响整个系统的可扩展性与交易确认速度<sup>[5-6]</sup>。
 
-随着发展历程的演进，区块链经历了以数字货币为代表的1.0阶段、以可编程智能合约为代表的2.0阶段，以及与物联网、大数据等技术融合、面向各行业应用的3.0阶段。根据参与方式的不同，区块链可分为公有链、联盟链和私有链。公有链允许任何节点自由加入，交易确认慢、隐私保护弱；联盟链只允许经过许可的组织加入，在性能、权限控制和隐私保护方面更适合由多个企业和监管部门共同参与的供应链场景，代表性平台有Hyperledger Fabric、FISCO BCOS和ChainMaker等。
+随着发展历程的演进，区块链经历了以数字货币为代表的1.0阶段、以可编程智能合约为代表的2.0阶段，以及与物联网、大数据等技术融合、面向各行业应用的3.0阶段。根据参与方式的不同，区块链可分为公有链、联盟链和私有链。公有链通常允许开放参与，公开可见的数据难以满足商业信息的分级共享要求；联盟链只允许经过许可的组织加入，在性能、权限控制和隐私保护方面更适合由多个企业和监管部门共同参与的供应链场景，代表性平台有Hyperledger Fabric、FISCO BCOS和ChainMaker等。
 
 ### 1.2 物联网与分布式存储技术
 
 物联网通过传感器、射频识别（Radio frequency identification，RFID）、全球定位系统等装置采集物体或过程的状态信息，并经由网络实现物与物、物与人的连接。在农业领域，物联网可用于监测农作物生长环境、仓储条件和冷链运输过程，自动记录温度、湿度、位置等数据，从而减少人工转录。但物联网只负责数据的感知与传输，采集记录是否可信，仍取决于设备身份是否可识别、设备与实物批次的绑定关系是否正确，以及采集数据是否经过核验。
 
-区块链的链式结构和全节点冗余存储的特性决定了其不适合直接存储大规模数据，尤其是图片、视频等非结构化文件。分布式存储技术为此提供了解决方案。其中，星际文件系统（InterPlanetary file system，IPFS）是一种典型的点对点分布式文件系统，它通过内容寻址而非传统的位置寻址来定位文件。每个存入IPFS的文件会根据其内容生成唯一的内容标识，文件内容的任何改动都会导致标识变化，因此既能有效去重，又便于核验文件是否被替换。在农业食品供应链中，将关键数据摘要上链、将原始大文件存入IPFS的“链上链下—双存储”模式，已在可信检测数据存储、政府数据共享等领域得到应用与验证<sup>[7-8]</sup>。
+区块链的链式结构和全节点冗余存储的特性决定了其不适合直接存储大规模数据，尤其是图片、视频等非结构化文件。分布式存储技术为此提供了解决方案。其中，星际文件系统（InterPlanetary File System，IPFS）是一种典型的点对点分布式文件系统，它通过内容寻址而非传统的位置寻址来定位文件。IPFS根据内容及其组织方式生成内容标识（Content Identifier，CID）。在相同导入规则下，内容变化会使标识变化，便于定位和核验文件。在农业食品供应链中，将关键数据摘要上链、将原始大文件存入IPFS的“链上链下—双存储”模式，已在可信检测数据存储、政府数据共享等领域得到应用与验证<sup>[7-8]</sup>。
 
 ### 1.3 现有农产品溯源技术的不足
 
@@ -54,15 +54,15 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 ### 2.1 分布式账本与数据共享
 
-区块链技术的核心是一个分布式共享账本，网络中的合法参与方都持有一份实时同步的账本副本，任何记录都需要在网络中广播并由参与各方共同见证。这种“多方持有、共同维护”的模式，改变了传统供应链中信息由单一实体控制的局面，使获授权的参与方能够按统一批次标识核对关键业务记录，为跨主体数据共享和供应链透明化管理奠定了基础<sup>[9]</sup>。针对1.3节所述的信息孤岛问题，分布式账本为各方提供了共同认可的数据来源，降低了信息核对与协调的成本。但账本共享并不意味着数据向所有参与方完全公开。农产品供应链中的采购价格、客户信息等属于商业秘密，因此还需明确参与方身份、数据访问范围和记录责任。
+分布式账本由参与同一账本的节点按协议维护，获授权的业务参与方可通过应用提交或查询记录。这种“多方持有、共同维护”的模式，改变了传统供应链中信息由单一实体控制的局面，使获授权的参与方能够按统一批次标识核对关键业务记录，为跨主体数据共享和供应链透明化管理奠定了基础<sup>[9]</sup>。针对1.3节所述的信息孤岛问题，分布式账本为各方提供了共同认可的数据来源，降低了信息核对与协调的成本。但账本共享并不意味着数据向所有参与方完全公开。农产品供应链中的采购价格、客户信息等属于商业秘密，因此还需明确参与方身份、数据访问范围和记录责任。
 
-### 2.2 共识机制与数据不可篡改
+### 2.2 共识机制与记录完整性
 
-数据写入区块链需要经过网络节点的共识过程。共识机制是一套确保账本一致性的算法和规则，如公有链中的工作量证明和联盟链中常用的实用拜占庭容错（Practical Byzantine fault tolerance，PBFT）等。一笔交易在得到足够数量节点的验证和确认后才能被打包进新的区块，区块之间通过哈希指针相互链接，形成在时间上有序、在密码学上可验证的链式结构。对历史数据的任何改动都会破坏链式结构，从而被其他节点发现和拒绝。这一特性保障了已提交记录的完整性，为农产品“从农场到餐桌”各环节的事后追溯提供了数据基础。然而，共识机制保护的是数据上链之后的状态，并不能判断记录在上链之前是否与实际生产和流通活动一致。若源头数据本身存在错误，区块链只会将错误数据完整地保存下来。
+区块链依靠共识及交易验证规则，使相关节点就交易顺序和有效状态达成一致。不同平台对交易执行、排序和验证的安排各有差异。区块通过哈希关联形成有序、可验证的链式记录，节点可依照协议核对交易和账本状态。单方更改历史记录会导致其与其他节点保存的记录或哈希校验结果不一致。通过核验这种不一致，可发现未经授权的改动，为农产品“从农场到餐桌”各环节的事后追溯提供了数据基础。然而，共识机制保护的是数据上链之后的状态，并不能判断记录在上链之前是否与实际生产和流通活动一致。若源头数据本身存在错误，区块链只会将错误数据完整地保存下来。
 
 ### 2.3 智能合约与流程自动化
 
-智能合约是部署在区块链上的一段自执行代码，它将供应链各方之间的协议、业务规则和监管要求以程序化形式进行编码，当满足预设条件时自动执行相应操作。通过智能合约，可以将依赖人工执行和监督的流程自动化、透明化，减少人为操作失误和履约纠纷，提升供应链的协同效率。例如，仓储主体提交入库记录时，合约可自动检查提交者权限、批次标识、必填字段以及前序环节记录是否齐全；采购合同也可编写为智能合约，在物流签收和质检合格信息均已确认后自动触发结算。但智能合约只能依据链上已有的数据进行判断，其执行结果的可靠性取决于输入数据是否可信，合约规则也需要由参与各方共同约定和授权。
+智能合约是部署在区块链上的一段自执行代码，它将供应链各方之间的协议、业务规则和监管要求以程序化形式进行编码，当满足预设条件时自动执行相应操作。通过智能合约，可以将依赖人工执行和监督的流程自动化、透明化，减少人为操作失误和履约纠纷，提升供应链的协同效率。例如，仓储主体提交入库记录时，合约可自动检查提交者权限、批次标识、必填字段以及前序环节记录是否齐全；采购合同也可编写为智能合约，在物流签收和质检合格信息均已确认后自动触发结算。但智能合约依据链上状态和交易提交的输入执行规则，其结果的可靠性仍取决于输入数据的质量，合约规则也需要由参与各方共同约定和授权。
 
 ### 2.4 区块链应用仍需解决的问题
 
@@ -72,13 +72,13 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 针对2.4节提出的3个问题，可信农产品供应链的构建以农产品批次标识为主线，由源头数据可信采集、联盟链多主体协同和链上链下融合存储3部分组成，三者与前文所述问题的对应关系见表1。
 
-如图1所示，种植主体、物流中心、加工企业、终端零售商和终端消费者之间同时存在物流和信息流。种植主体记录种植基地、化肥使用、除草和浇灌等种植信息；物流中心记录入仓时间、除杂干燥、库存周期和存储环境等仓储管理数据；加工企业记录清洗烘干、质量检测、加工分级和分拣包装等加工生产数据；终端零售商记录销售时间、人员地点、销售价格和销售库存等零售销售数据；冷链物流运输环节则记录承运方信息、运输车辆、运输路径和温湿度实时监控数据。各环节数据经溯源链码校验后写入联盟链，相邻环节之间可沿批次标识进行外部溯源，消费者扫码查询时产生的消费查询数据也一并记录。政府监管机构、质检部门、供应链参与方、企业、科研机构与高校以及消费者溯源终端等按各自权限查询链上信息，从而将原本线性、分散的供应链记录连接为可多方核验的整体。
+如图1所示，种植主体、物流中心、加工企业、终端零售商和终端消费者之间同时存在物流和信息流。种植主体记录种植基地、化肥使用、除草和浇灌等种植信息；物流中心记录入仓时间、除杂干燥、库存周期和存储环境等仓储管理数据；加工企业记录清洗烘干、质量检测、加工分级和分拣包装等加工生产数据；终端零售商记录销售时间、人员地点、销售价格和销售库存等零售销售数据；冷链物流运输环节则记录承运方信息、运输车辆、运输路径和温湿度实时监控数据。各环节的关键批次事件经溯源链码校验后写入联盟链，相邻环节可按批次标识关联查询。消费者可扫码查询，涉及个人身份和价格的明细由受控业务系统保存。政府监管机构、质检部门、供应链参与方、企业、科研机构与高校以及消费者溯源终端等按各自权限查询链上信息，从而将原本线性、分散的供应链记录连接为可多方核验的整体。
 
 ![图1 农产品供应链溯源流程](../journal-submission/revision-1/figures/figure-1-supply-chain-traceability-flow.png)
 
 *图1 农产品供应链溯源流程*
 
-基于类似理念，相关研究人员构建了针对粮油食品和特定农产品的全供应链信息追溯模型。张新等<sup>[10]</sup>融合可信区块链与可信标识技术，为粮油食品构建了全供应链信息追溯模型，以解决传统追溯系统中数据安全性低和共享性差的问题；Xu等<sup>[11]</sup>在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；Malavathula等<sup>[12]</sup>开发了集成溯源与直销功能的去中心化平台，以减少中间环节、增加农户收入；李佳欣等<sup>[13]</sup>提出了融入政府可信化监管的模型，通过“区块链+PBFT机制”加强市场监督与消费者权益保护。这些研究为本文的构建路径提供了参考，下文按表1逐项说明各部分的设计。
+基于类似理念，相关研究人员构建了针对粮油食品和特定农产品的全供应链信息追溯模型。张新等<sup>[10]</sup>融合可信区块链与可信标识技术，为粮油食品构建了全供应链信息追溯模型，以解决传统追溯系统中数据安全性低和共享性差的问题；Xu等<sup>[11]</sup>在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；Malavathula等<sup>[12]</sup>开发了集成溯源与直销功能的去中心化平台，以减少中间环节、增加农户收入；李佳欣等<sup>[13]</sup>提出了融入政府可信化监管的模型，结合区块链与实用拜占庭容错（Practical Byzantine Fault Tolerance，PBFT）机制加强市场监督与消费者权益保护。这些研究为本文的构建路径提供了参考，下文按表1逐项说明各部分的设计。
 
 **表1 现有溯源问题与构建路径的对应关系**
 
@@ -88,29 +88,29 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 | --- | --- | --- | --- |
 | 源头记录漏记、误填、批次错配 | 上链前数据的真实性无法由区块链本身保证 | 3.1 源头数据可信采集 | 物联网设备身份、批次绑定、上链前校验 |
 | 跨主体信息孤岛、核验口径不一致 | 成员准入、访问权限与责任划分 | 3.2 联盟链多主体协同 | Hyperledger Fabric许可准入、背书策略、通道隔离 |
-| 证据文件体量大、易被替换或删除 | 全节点冗余存储导致账本膨胀 | 3.3 链上链下融合存储 | 链上内容标识、IPFS、国密算法 |
+| 证据文件体量大、易被替换或删除 | 全节点冗余存储导致账本膨胀 | 3.3 链上链下融合存储 | 链上内容标识与摘要、IPFS、备份 |
 
 ### 3.1 物联网与源头数据可信采集
 
 针对1.3节所述源头记录漏记、误填和批次错配的问题，以及2.2节指出的“区块链无法保证上链前数据真实性”的局限，可在农田、仓库、冷链车等关键场景部署传感器、RFID标签、摄像头等物联网设备，自动采集环境参数、地理位置和操作行为等溯源信息，减少人工转录环节。每台设备应分配唯一身份并在系统中登记，采集记录附带设备标识、批次标识和采集时间，并由设备或边缘网关签名后提交。
 
-数据上链前，由网关或溯源链码依次核验设备身份和提交主体权限，检查字段完整性、取值范围、批次关联关系和时间顺序；对缺失、超出阈值或相互矛盾的记录进行标记，交由责任主体复核，并将复核结果一并记录。签名能够证明记录的来源和完整性，但不能替代对现场事实的判断，因此还需结合设备校准维护、业务单据核对和必要的人工抽检。通过上述措施构筑可信供应链的第一道防线，既提升了源头数据的可信度，也丰富了溯源信息的维度，为生产环节的精准决策与管理提供数据基础<sup>[14]</sup>。
+数据上链前，由网关或溯源链码依次核验设备身份和提交主体权限，检查字段完整性、取值范围、批次关联关系和时间顺序；对缺失、超出阈值或相互矛盾的记录进行标记，交由责任主体复核，并将复核结果一并记录。签名可用于核验签名方身份和签名后记录的完整性，但不能替代对现场事实的判断，因此还需结合设备校准维护、业务单据核对和必要的人工抽检。通过上述措施构筑可信供应链的第一道防线，既提升了源头数据的可信度，也丰富了溯源信息的维度，为生产环节的精准决策与管理提供数据基础<sup>[14]</sup>。
 
 ### 3.2 联盟链架构与多主体协同
 
-针对1.3节所述跨主体信息孤岛与核验口径不一致的问题，以及2.1节指出的成员准入与访问权限需求，可采用图2所示的Hyperledger Fabric联盟链业务网络架构。图2中，用户终端、企业资源计划（Enterprise resource planning，ERP）系统和采集设备等参与者通过应用程序接口（API）调用业务应用，业务应用再通过软件开发工具包（SDK）与区块链网络交互；组织A和组织B分别维护各自的节点，每个节点部署智能合约（链码）并保存一份账本副本，节点之间通过网络通道连接，排序服务负责交易排序与出块。
+针对1.3节所述跨主体信息孤岛与核验口径不一致的问题，以及2.1节指出的成员准入与访问权限需求，可采用图2所示的Hyperledger Fabric联盟链业务网络架构。图2中，用户终端、企业资源计划（Enterprise resource planning，ERP）系统和采集设备等参与者通过应用程序接口（API）调用业务应用，业务应用再通过软件开发工具包（SDK）与区块链网络交互；组织A和组织B分别维护各自的节点，加入通道的对等节点维护该通道的账本，承担背书任务的节点安装并执行链码，排序服务负责交易排序与出块。
+
+一笔溯源交易的处理过程为：业务应用以授权身份向背书节点提交交易提案；背书节点执行链码并按背书策略返回签名结果；应用收集足够的背书后将交易提交至排序服务；排序服务对交易排序并打包成区块，分发给通道内的节点；节点验证背书策略和数据版本后提交区块，有效交易更新账本状态。在这一过程中，参与方使用可信证书机构签发的证书，成员服务提供者（Membership Service Provider，MSP）负责按配置验证身份及其所属组织；背书策略可规定关键记录须由上下游多个组织共同确认，避免单一主体随意写入；通道和私有数据集合可将价格等敏感信息限定在相关组织之间。由此，各主体按统一批次标识和链码规则提交与核验记录，监管部门和消费者按授权范围查询，明确了不同角色的提交、核验和查询职责。
 
 ![图2 Hyperledger Fabric联盟链业务网络架构](../journal-submission/revision-1/figures/figure-2-fabric-business-network.png)
 
 *图2 Hyperledger Fabric联盟链业务网络架构*
 
-一笔溯源交易的处理过程为：业务应用以授权身份向背书节点提交交易提案；背书节点执行链码并按背书策略返回签名结果；应用收集足够的背书后将交易提交至排序服务；排序服务对交易排序并打包成区块，分发给通道内的节点；节点验证背书策略和数据版本后提交区块，有效交易更新账本状态。在这一过程中，各组织通过成员服务提供者（Membership service provider，MSP）获得数字身份，只有经过许可的组织才能加入网络；背书策略可规定关键记录须由上下游多个组织共同确认，避免单一主体随意写入；通道和私有数据集合可将价格等敏感信息限定在相关组织之间。由此，各主体按统一批次标识和链码规则提交与核验记录，监管部门和消费者按授权范围查询，明确了不同角色的提交、核验和查询职责。
-
 ### 3.3 链上链下融合存储与安全合规
 
-针对1.3节所述证据文件存储压力大、易被替换的问题，以及2.4节指出的全节点冗余存储导致账本膨胀的局限，可采用“链上链下”协同的融合存储架构。链上仅记录批次标识、关键业务事件、提交主体、时间戳以及证据文件的内容标识等结构化信息；产地照片、检测报告、监控视频等原始文件存储在IPFS等分布式存储系统中。查询时依据链上记录的内容标识从IPFS取回文件，重新计算其哈希值并与链上登记值比对，从而核验文件是否被替换。由于IPFS节点会清理未固定的数据，应结合文件固定、多节点备份和定期可用性检查管理证据留存，确保在规定的保存期限内能够取得相关文件。
+针对1.3节所述证据文件存储压力大、易被替换的问题，以及2.4节指出的全节点冗余存储导致账本膨胀的局限，可采用“链上链下”协同的融合存储架构。链上记录批次标识、关键业务事件、提交主体、时间戳、证据文件的CID及文件摘要；产地照片、检测报告、监控视频等原始文件存储在IPFS等分布式存储系统中。查询时依据链上登记的CID从IPFS定位并取回文件，再按入库时约定的摘要算法计算文件摘要，与链上单独登记的摘要比对。CID用于寻址，文件摘要用于独立核验取回文件。IPFS节点可能清理未固定的数据，应结合文件固定、多节点备份和定期可用性检查管理证据留存，降低保存期内文件不可获取的风险。
 
-此外，为满足关键信息基础设施的安全合规要求，区块链平台应在密码服务层集成SM2、SM3、SM4等国密算法，实现从身份认证到数据加密的全流程自主可控。在Hyperledger Fabric的国密化改造方面，已有研究将国密算法嵌入平台底层，并系统验证了其可行性与性能<sup>[15]</sup>；在此基础上，相关研究还设计并实现了基于国密算法的交易数据隐私保护与安全共享方案<sup>[16]</sup>，为联盟链在农产品溯源中的合规落地提供了从底层支持到上层应用的技术路径。
+在需要采用商用密码的部署场景中，可按具体的安全要求评估SM2签名、SM3摘要和SM4加密的集成方案，并验证证书、密钥管理与系统兼容性。在Hyperledger Fabric的国密化改造方面，已有研究将国密算法嵌入平台底层，并系统验证了其可行性与性能<sup>[15]</sup>；在此基础上，相关研究还设计并实现了基于国密算法的交易数据隐私保护与安全共享方案<sup>[16]</sup>，为联盟链在农产品溯源中的合规落地提供了从底层支持到上层应用的技术路径。
 
 ## 4 结语与展望
 
@@ -138,11 +138,11 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 [8] 周颖玉，王海英，柯平，等. 基于区块链的开放政府数据“链上链下-双存储”共享模型研究[J]. 情报杂志，2023，42（9）：188-195.
 
-[9] JIN H，XIAO J. Towards trustworthy blockchain systems in the era of “Internet of value”：development，challenges，and future trends[J]. Science China information sciences，2022，65（5）：153101.
+[9] JIN H，XIAO J. Towards trustworthy blockchain systems in the era of “Internet of value”：development，challenges，and future trends[J]. Science China Information Sciences，2022，65（5）：153101.
 
 [10] 张新，彭祥贞，李悦，等. 基于可信区块链和可信标识的粮油食品全供应链信息追溯模型[J]. 农业大数据学报，2022，4（1）：35-48.
 
-[11] XU W，GUO H Y，ZHANG X G，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：1-19.
+[11] XU W，GUO H Y，ZHANG X G，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：7413.
 
 [12] MALAVATHULA N，SHAIK S，NAYANAGAR S C R，et al. Decentralized traceability and direct marketing of agricultural supply chain[C]//AIP Conference Proceedings. Melville：AIP Publishing，2025，3237（1）：030037.
 
@@ -156,6 +156,6 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 ---
 
-作者简介 柏小康（1999—），男，湖南永州人，硕士研究生，从事农业信息化研究。
+作者简介 柏小康（1999—），男，湖南永州人，硕士，从事农业信息化研究。
 
 收稿日期 2025-11-05

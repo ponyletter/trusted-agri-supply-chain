@@ -181,7 +181,7 @@ const front = [
     spacing: { before: 40, after: 240 },
   }),
   new Paragraph({
-    children: [new TextRun({ text: C.enTitle, font: TNR, size: SZ.sihao, bold: true })],
+    children: [new TextRun({ text: C.enTitle, font: TNR, size: SZ.erhao, bold: true })],
     alignment: AlignmentType.CENTER,
     spacing: { before: 120, after: 120 },
   }),
