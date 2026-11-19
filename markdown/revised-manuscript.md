@@ -78,7 +78,7 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 *图1 农产品供应链溯源流程*
 
-基于类似理念，相关研究人员构建了针对粮油食品和特定农产品的全供应链信息追溯模型。张新等<sup>[10]</sup>融合可信区块链与可信标识技术，为粮油食品构建了全供应链信息追溯模型，以解决传统追溯系统中数据安全性低和共享性差的问题；Xu等<sup>[11]</sup>在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；Malavathula等<sup>[12]</sup>开发了集成溯源与直销功能的去中心化平台，以减少中间环节、增加农户收入；李佳欣等<sup>[13]</sup>提出了融入政府可信化监管的模型，结合区块链与实用拜占庭容错（Practical Byzantine Fault Tolerance，PBFT）机制加强市场监督与消费者权益保护。这些研究为本文的构建路径提供了参考，下文按表1逐项说明各部分的设计。
+基于类似理念，相关研究人员构建了针对粮油食品和特定农产品的全供应链信息追溯模型。张新等<sup>[10]</sup>融合可信区块链与可信标识技术，为粮油食品构建了全供应链信息追溯模型，以解决传统追溯系统中数据安全性低和共享性差的问题；徐伟等<sup>[11]</sup>在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；Malavathula等<sup>[12]</sup>开发了集成溯源与直销功能的去中心化平台，以减少中间环节、增加农户收入；李佳欣等<sup>[13]</sup>提出了融入政府可信化监管的模型，结合区块链与实用拜占庭容错（Practical Byzantine Fault Tolerance，PBFT）机制加强市场监督与消费者权益保护。这些研究为本文的构建路径提供了参考，下文按表1逐项说明各部分的设计。
 
 **表1 现有溯源问题与构建路径的对应关系**
 
@@ -142,7 +142,7 @@ BAI Xiaokang (School of Information Engineering, Tarim University, Alar 843300, 
 
 [10] 张新，彭祥贞，李悦，等. 基于可信区块链和可信标识的粮油食品全供应链信息追溯模型[J]. 农业大数据学报，2022，4（1）：35-48.
 
-[11] XU W，GUO H Y，ZHANG X G，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：7413.
+[11] XU W，GUO H，ZHANG X，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：7413.
 
 [12] MALAVATHULA N，SHAIK S，NAYANAGAR S C R，et al. Decentralized traceability and direct marketing of agricultural supply chain[C]//AIP Conference Proceedings. Melville：AIP Publishing，2025，3237（1）：030037.
 

@@ -132,7 +132,7 @@ module.exports = {
     { type: 'fig', key: 'fig1', caption: '图1 农产品供应链溯源流程' },
     { type: 'p', text:
       '基于类似理念，相关研究人员构建了针对粮油食品和特定农产品的全供应链信息追溯模型。张新等[10]融合可信区块链与可信标识技术，为粮油食品构建了全供应链信息追溯模型，' +
-      '以解决传统追溯系统中数据安全性低和共享性差的问题；Xu等[11]在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；' +
+      '以解决传统追溯系统中数据安全性低和共享性差的问题；徐伟等[11]在食用菌溯源研究中设计了主侧链协同的多链追溯架构，通过“链上链下”混合管理策略缓解了单一区块链的存储开销与响应效率瓶颈；' +
       'Malavathula等[12]开发了集成溯源与直销功能的去中心化平台，以减少中间环节、增加农户收入；李佳欣等[13]提出了融入政府可信化监管的模型，结合区块链与实用拜占庭容错（Practical Byzantine Fault Tolerance，PBFT）机制加强市场监督与消费者权益保护。' +
       '这些研究为本文的构建路径提供了参考，下文按表1逐项说明各部分的设计。' },
     { type: 'table', key: 'tab1', caption: '表1 现有溯源问题与构建路径的对应关系',
@@ -203,7 +203,7 @@ module.exports = {
     '周颖玉，王海英，柯平，等. 基于区块链的开放政府数据“链上链下-双存储”共享模型研究[J]. 情报杂志，2023，42（9）：188-195.',
     'JIN H，XIAO J. Towards trustworthy blockchain systems in the era of “Internet of value”：development，challenges，and future trends[J]. Science China Information Sciences，2022，65（5）：153101.',
     '张新，彭祥贞，李悦，等. 基于可信区块链和可信标识的粮油食品全供应链信息追溯模型[J]. 农业大数据学报，2022，4（1）：35-48.',
-    'XU W，GUO H Y，ZHANG X G，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：7413.',
+    'XU W，GUO H，ZHANG X，et al. Research on a blockchain-based quality and safety traceability system for Hymenopellis raphanipes[J]. Sustainability，2025，17（16）：7413.',
     'MALAVATHULA N，SHAIK S，NAYANAGAR S C R，et al. Decentralized traceability and direct marketing of agricultural supply chain[C]//AIP Conference Proceedings. Melville：AIP Publishing，2025，3237（1）：030037.',
     '李佳欣，谭凯畅，施海东，等. 区块链架构下农产品溯源政府可信化监督管理优化模型[J]. 食品安全导刊，2024（9）：23-26，32.',
     '韩佳伟，杨信廷. 农产品智慧供应链：内涵、关键技术与未来方向[J]. 智慧农业（中英文），2025，7（3）：1-16.',
