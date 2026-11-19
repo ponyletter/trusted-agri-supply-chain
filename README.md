@@ -14,7 +14,7 @@ This repository tracks revisions to the Chinese-language manuscript *Research on
 
 ## Figure replacements
 
-| Figure in the current proof | Latest replacement in the local thesis materials |
+| Figure in the current proof | Latest replacement in the thesis materials |
 | --- | --- |
 | Figure 1. Agricultural product supply-chain traceability application model | `图3-2 农产品供应链溯源流程图.png` |
 | Figure 2. Consortium blockchain network architecture | `图2-3 Fabric业务网络架构.png` |
@@ -23,4 +23,11 @@ Use the copies directly under `毕业论文相关/`. After replacement, check jo
 
 ## Working with issues
 
-Use English for issue titles and provide a Chinese equivalent when it helps identify a manuscript section or passage. Record the relevant section or figure, the requested change, and how to verify it. The submission, journal proof, thesis materials, editorial notes, and Markdown reading copies are maintained locally.
+Use English for issue titles and provide a Chinese equivalent when it helps identify a manuscript section or passage. Record the relevant section or figure, the requested change, and how to verify it.
+
+## Source materials
+
+- [Editorial notes](目前编辑意见.txt) contain the original revision feedback.
+- [Journal submission materials](期刊投稿相关/) contain the submitted Word file, the journal proof PDF, and the original submission figures.
+- [Thesis materials](毕业论文相关/) contain the thesis Word file, its figure collection, and the two latest replacement figures at the top level.
+- [Submitted manuscript in Markdown](local-markdown/submitted-manuscript.md) and [journal proof in Markdown](local-markdown/journal-proof.md) are reading copies. Use the originals to check pagination and layout.
