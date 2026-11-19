@@ -16,10 +16,10 @@
 
 | 当前期刊校样 | 最新版 |
 | --- | --- |
-| 图1 农产品供应链溯源应用模型 | `图3-2 农产品供应链溯源流程图.png` |
-| 图2 联盟链网络技术架构 | `图2-3 Fabric业务网络架构.png` |
+| 图1 农产品供应链溯源应用模型 | [图3-2 农产品供应链溯源流程图](thesis-materials/replacement-figures/figure-3-2-supply-chain-traceability-flow.png) |
+| 图2 联盟链网络技术架构 | [图2-3 Fabric业务网络架构](thesis-materials/replacement-figures/figure-2-3-fabric-business-network.png) |
 
-采用 `毕业论文相关/` 根目录中的两份图片。替换后在 Word 中核对期刊图号、图题和正文引用。
+采用 `thesis-materials/replacement-figures/` 中的两份图片。替换后在 Word 中核对期刊图号、图题和正文引用。
 
 ## Issue 协作
 
@@ -27,7 +27,7 @@ Issue 标题以英文为主，可附中文原文方便定位。每条 Issue 写�
 
 ## 资料索引
 
-- [目前编辑意见](目前编辑意见.txt)保留原始修订反馈。
-- [期刊投稿资料](期刊投稿相关/)包含原投稿 Word、期刊校样 PDF 和原投稿图片。
-- [硕士论文资料](毕业论文相关/)包含硕士论文 Word 和配图，目录根部存放两张拟替换的最新版图片。
-- [原投稿稿 Markdown](local-markdown/submitted-manuscript.md)和[期刊校样 Markdown](local-markdown/journal-proof.md)供查阅和复制，分页与排版以原文件为准。
+- [目前编辑意见](editorial-feedback.txt)保留原始修订反馈。
+- [期刊投稿资料](journal-submission/)包含原投稿 Word、期刊校样 PDF 和原投稿图片。
+- [硕士论文资料](thesis-materials/)包含硕士论文 Word 和配图，[replacement-figures](thesis-materials/replacement-figures/) 中存放两张拟替换的最新版图片。
+- [原投稿稿 Markdown](markdown/submitted-manuscript.md)和[期刊校样 Markdown](markdown/journal-proof.md)供查阅和复制，分页与排版以原文件为准。

@@ -16,10 +16,10 @@ This repository tracks revisions to the Chinese-language manuscript *Research on
 
 | Figure in the current proof | Latest replacement in the thesis materials |
 | --- | --- |
-| Figure 1. Agricultural product supply-chain traceability application model | `图3-2 农产品供应链溯源流程图.png` |
-| Figure 2. Consortium blockchain network architecture | `图2-3 Fabric业务网络架构.png` |
+| Figure 1. Agricultural product supply-chain traceability application model | [Figure 3-2](thesis-materials/replacement-figures/figure-3-2-supply-chain-traceability-flow.png) |
+| Figure 2. Consortium blockchain network architecture | [Figure 2-3](thesis-materials/replacement-figures/figure-2-3-fabric-business-network.png) |
 
-Use the copies directly under `毕业论文相关/`. After replacement, check journal figure numbering, captions, and in-text references against the Word manuscript.
+Use the copies directly under `thesis-materials/replacement-figures/`. After replacement, check journal figure numbering, captions, and in-text references against the Word manuscript.
 
 ## Working with issues
 
@@ -27,7 +27,7 @@ Use English for issue titles and provide a Chinese equivalent when it helps iden
 
 ## Source materials
 
-- [Editorial notes](目前编辑意见.txt) contain the original revision feedback.
-- [Journal submission materials](期刊投稿相关/) contain the submitted Word file, the journal proof PDF, and the original submission figures.
-- [Thesis materials](毕业论文相关/) contain the thesis Word file, its figure collection, and the two latest replacement figures at the top level.
-- [Submitted manuscript in Markdown](local-markdown/submitted-manuscript.md) and [journal proof in Markdown](local-markdown/journal-proof.md) are reading copies. Use the originals to check pagination and layout.
+- [Editorial notes](editorial-feedback.txt) contain the original revision feedback.
+- [Journal submission materials](journal-submission/) contain the submitted Word file, the journal proof PDF, and the original submission figures.
+- [Thesis materials](thesis-materials/) contain the thesis Word file, its figure collection, and the two latest figures in [replacement-figures](thesis-materials/replacement-figures/).
+- [Submitted manuscript in Markdown](markdown/submitted-manuscript.md) and [journal proof in Markdown](markdown/journal-proof.md) are reading copies. Use the originals to check pagination and layout.
