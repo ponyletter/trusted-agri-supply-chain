@@ -29,5 +29,7 @@ Issue 标题以英文为主，可附中文原文方便定位。每条 Issue 写�
 
 - [目前编辑意见](editorial-feedback.txt)保留原始修订反馈。
 - [期刊投稿资料](journal-submission/)包含原投稿 Word、期刊校样 PDF 和原投稿图片。
+- [《安徽农学通报》投稿须知](journal-submission/formatting/submission-guidelines.docx)用于核对投稿流程、稿件必备内容以及图表、单位和参考文献的规范。
+- [论文模板与格式核对清单](journal-submission/formatting/manuscript-template-and-formatting-checklist.doc)提供 Word 排版样式及常见问题说明，可用于核对标题层级、摘要、单位、三线表和参考文献。
 - [硕士论文资料](thesis-materials/)包含硕士论文 Word 和配图，[replacement-figures](thesis-materials/replacement-figures/) 中存放两张拟替换的最新版图片。
 - [原投稿稿 Markdown](markdown/submitted-manuscript.md)和[期刊校样 Markdown](markdown/journal-proof.md)供查阅和复制，分页与排版以原文件为准。

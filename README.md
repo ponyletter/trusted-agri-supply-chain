@@ -29,5 +29,7 @@ Use English for issue titles and provide a Chinese equivalent when it helps iden
 
 - [Editorial notes](editorial-feedback.txt) contain the original revision feedback.
 - [Journal submission materials](journal-submission/) contain the submitted Word file, the journal proof PDF, and the original submission figures.
+- [Journal submission guidelines](journal-submission/formatting/submission-guidelines.docx) cover submission procedures, required manuscript elements, and journal conventions for figures, tables, units, and references.
+- [Manuscript template and formatting checklist](journal-submission/formatting/manuscript-template-and-formatting-checklist.doc) provides a Word layout to follow and examples for headings, abstracts, units, three-line tables, and references.
 - [Thesis materials](thesis-materials/) contain the thesis Word file, its figure collection, and the two latest figures in [replacement-figures](thesis-materials/replacement-figures/).
 - [Submitted manuscript in Markdown](markdown/submitted-manuscript.md) and [journal proof in Markdown](markdown/journal-proof.md) are reading copies. Use the originals to check pagination and layout.
